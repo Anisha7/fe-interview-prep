@@ -69,6 +69,17 @@ export default {
 
 ```
 
+### ReduxState
+
+```
+// store/ReduxState.ts
+
+import { Task } from "./actions/todolist/types";
+export interface ReduxState {
+  task: Task[];
+}
+```
+
 ### Reducers/todolist
 
 Initialize reducer method
@@ -80,43 +91,34 @@ import {
   ADD_TASK,
   Task,
 } from "../../actions/todolist/types";
-// Can use AnyAction for any action type if you don't want to define it
-// import { AnyAction } from "redux"
+
+// Can use AnyAction for any action type
+import { AnyAction } from "redux";
 
 const defaultState: Array<Task> = [];
 
-const todolist = (state = defaultState, action: AnyAction) => {
+const TaskReducer = (state = defaultState, action: AnyAction) => {
   switch (action.type) {
     case ADD_TASK:
-      return [...state, action.payload];
-
+      return [...state, action.payload.task];
     default:
       return state;
+  }
 };
 
-export default todolist;
-```
+export default TaskReducer;
 
-### Reducers
-
-Combine all reducers for main store export
-
-```
-// reducers/indexjs
-
-import { combineReducers } from 'redux'
-import TaskReducer from './todolist'
-
-export default combineReducers({
-    TaskReducer,
-})
 ```
 
 ### Connect reducers to app in App.tsx
 
 ```
+import TaskReducer from "./store/reducers/todolist";
+
 const store = configureStore({
-  reducer: rootReducer,
+  reducer: {
+    task: TaskReducer,
+  },
 });
 ```
 
@@ -199,3 +201,7 @@ store.subscribe(
 ```
 
 And we're done! It should just work!
+
+### Styled components
+
+`npm install styled-components @types/styled-components`
