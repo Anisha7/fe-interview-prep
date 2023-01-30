@@ -1,46 +1,127 @@
-# Getting Started with Create React App
+# Frontend React + Typescript Interview Prep
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+In this repo, we will go over
 
-## Available Scripts
+- setting up the app with react + typescript
+- setting up a store with redux + typescript
+- saving store on localstorage to save user state on reload
+- adding tests
 
-In the project directory, you can run:
+# We will be completing the following challenges for practice:
 
-### `npm start`
+1. Create a simple to-do list application using React and TypeScript. The application should have the ability to add new tasks, mark tasks as completed, and delete tasks.
+2. Create a form with input fields for a user's name, email, and password, and use TypeScript to ensure that the form only submits if all fields are filled out and the email is in the correct format.
+3. Create a game that allows a user to select a difficulty level (easy, medium, hard) and then generates a random number for the user to guess. Use TypeScript to ensure that the user can only select from the available difficulty levels.
+4. Create a weather application that displays the current temperature and weather conditions for a given location. Use TypeScript to define the shape of the data returned from the weather API and to ensure that all required data is present before displaying it to the user.
+5. Create a simple e-commerce application that allows a user to add items to a cart and then displays the total cost of the items in the cart. Use TypeScript to ensure that the total cost is always displayed in the correct format and that the user can only add items to the cart that are in stock.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# How to set up a new react + typescript app
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Installation
 
-### `npm test`
+`npx create-react-app my-app --template typescript`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## File system
 
-### `npm run build`
+- Create folder `src/store`
+- Create folder `store/actions`. We will use subfolders to store different actions here
+- Create folder `store/reducers`. We will use subfolders to store different reducers here and then combine them in `store/reducers/index.js`.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+For the purpose of this example, let's assume we are setting up a TODO list app. So create the following folders and files:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- In actions: `store/actions/todolist/index.ts` and `store/actions/todolist/types.ts`
+- In reducers `store/reducers/todolist/index.ts`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Since we are using Typescript, we will also need to define ReduxState.
 
-### `npm run eject`
+- Create file `store/ReduxState.ts`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Actions/todolist
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+// actions/todolist/types.ts
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+export const ADD_TASK = 'ADD_TASK';
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+export interface Task {
+    id: number;
+    title: string;
+    isCompleted: boolean;
+    dateCreated: Date;
+}
 
-## Learn More
+export type AddActionType = {
+    type: string;
+    payload: ActionPayloadType;
+}
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+// actions/todolist/index.ts
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+import {
+  Task,
+  ADD_TASK,
+  AddActionType,
+} from "./types";
+
+export const addTask = (task: Task): AddActionType => {
+  return {
+    type: ADD_TASK,
+    payload: {
+      task,
+    },
+  };
+};
+
+export default {
+  addTask,
+};
+
+```
+
+## Reducers/todolist
+
+```
+// reducers/todolist/index.ts
+
+import {
+  ADD_TASK,
+  ActionTypes,
+  Task,
+} from "../../actions/todolist/types";
+// Can use AnyAction for any action type if you don't want to define it
+// import { AnyAction } from "redux"
+
+const defaultState: Array<Task> = [];
+
+const todolist = (state = defaultState, action: ActionTypes) => {
+  switch (action.type) {
+    case ADD_TASK:
+      return [...state, action.payload];
+};
+
+export default todolist;
+```
+
+## Reducers
+
+```
+// reducers/indexjs
+
+import { combineReducers } from 'redux'
+import TaskReducer from './todolist'
+
+export default combineReducers({
+    TaskReducer,
+})
+```
+
+# Setting up the redux store
+
+`npm install redux react-redux redux-thunk @reduxjs/toolkit`
+`npm install -D @types/redux @types/react-redux @types/redux-thunk`
+
+# Serving store to local storage
+
+`npm i debounce @types/debounce`
