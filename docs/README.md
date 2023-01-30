@@ -78,7 +78,6 @@ Initialize reducer method
 
 import {
   ADD_TASK,
-  ActionTypes,
   Task,
 } from "../../actions/todolist/types";
 // Can use AnyAction for any action type if you don't want to define it
@@ -86,10 +85,13 @@ import {
 
 const defaultState: Array<Task> = [];
 
-const todolist = (state = defaultState, action: ActionTypes) => {
+const todolist = (state = defaultState, action: AnyAction) => {
   switch (action.type) {
     case ADD_TASK:
       return [...state, action.payload];
+
+    default:
+      return state;
 };
 
 export default todolist;

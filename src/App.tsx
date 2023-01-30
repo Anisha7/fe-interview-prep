@@ -2,13 +2,16 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { configureStore } from "@reduxjs/toolkit";
-import rootReducer from "./store/reducers";
 import { Provider } from "react-redux";
 import { loadState, saveState } from "./store/browserStorage";
 import { debounce } from "debounce";
+import TodoListApp from "./components/TodoListApp";
+import TaskReducer from "./store/reducers/todolist";
 
 const store = configureStore({
-  reducer: rootReducer,
+  reducer: {
+    task: TaskReducer,
+  },
   // here we restore the previously persisted state
   preloadedState: loadState(),
 });
@@ -25,22 +28,7 @@ store.subscribe(
 function App() {
   return (
     <Provider store={store}>
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <TodoListApp />
     </Provider>
   );
 }
