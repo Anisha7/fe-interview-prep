@@ -1,7 +1,31 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addTask, updateTask } from "../../store/actions/todolist";
+import styled from "styled-components";
+import { addTask, updateTask, deleteTask } from "../../store/actions/todolist";
 import { Task } from "../../store/actions/todolist/types";
+
+export const StyledTaskListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  margin: auto;
+`;
+
+export const StyledTaskListItemsContainer = styled.ul`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style-type: none;
+  margin: 10px;
+  padding: 0;
+  width: 100%;
+`;
+
+export const StyledTaskListItem = styled.li`
+  text-decoration: none;
+`;
+
 export interface TaskListItemProps {
   task: Task;
 }
@@ -11,7 +35,7 @@ export const TaskListItem: React.FunctionComponent<TaskListItemProps> = ({
 }) => {
   const dispatch = useDispatch();
   return (
-    <>
+    <StyledTaskListItem>
       <input
         type="checkbox"
         name={task.title}
@@ -23,7 +47,8 @@ export const TaskListItem: React.FunctionComponent<TaskListItemProps> = ({
         alt={task.title}
       />
       <label>{task.title}</label>
-    </>
+      <button onClick={() => dispatch(deleteTask(task))}>x</button>
+    </StyledTaskListItem>
   );
 };
 

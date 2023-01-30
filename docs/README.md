@@ -205,3 +205,15 @@ And we're done! It should just work!
 ### Styled components
 
 `npm install styled-components @types/styled-components`
+
+Example implementation:
+
+```
+export const Container = styled.div`
+    display: flex;
+    justify-content:space-evenly;
+    align-items: center;
+    color: white;
+    background-color: #131A22;
+`
+```
