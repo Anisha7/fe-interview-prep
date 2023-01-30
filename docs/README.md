@@ -37,6 +37,10 @@ export interface Task {
     dateCreated: Date;
 }
 
+type ActionPayloadType = {
+  task: Task;
+};
+
 export type AddActionType = {
     type: string;
     payload: ActionPayloadType;
