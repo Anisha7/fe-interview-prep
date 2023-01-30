@@ -17,9 +17,13 @@ In this repo, we will go over
 
 ## How to set up a new react + typescript app
 
-### Installation
+### Set up a new react app
 
 `npx create-react-app my-app --template typescript`
+
+### Run app
+
+In the file directory: `npm start`
 
 ## Setting up the redux store
 
