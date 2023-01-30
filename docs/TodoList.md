@@ -21,11 +21,12 @@ Questions:
 - Persist store to local storage so it stays on reload
   - Create TODO Task List component
     - Get tasks from store
+    - Create TaskListItem component
+      - Add an x icon next to the checkbox list item to allow deletion.
+      - Use Delete action to delete the task
     - Map tasks to check box list items
     - Use store action Update when checkbox is selected to mark task as completed.
     - Disable checkbox for completed tasks
-    - Create input text at the top of the list to add new task, mark priority by time created
+    - Create AddTaskItem component and render at the top of the list to add new task
       - Use ADD action to add the new task to store
-      - Add an x icon next to the checkbox list item to allow deletion.
-      - Use Delete action to delete the task
 - Add tests
