@@ -29,10 +29,12 @@ In the file directory: `npm start`
 
 ### How to initialize testing library
 
+- Install the following:
+
 `npm install --save-dev @testing-library/react`
 `npm install --save-dev jest @types/jest @babel/preset-typescript`
 
-Create file babel.config.js
+- Create file babel.config.js
 
 ```
 module.exports = {
@@ -45,6 +47,14 @@ module.exports = {
 };
 ```
 
-Update the test script in package.json: `"test": "jest",`.
+- Update the test script in package.json: `"test": "jest",`.
+- Specify the testing environment at by creating file `jest.config.js` with:
 
-Now just create your test files and you're good to go! Add a sample test to `App.test.tsx` to test it out.
+```
+module.exports = {
+  testEnvironment: "jsdom",
+};
+
+```
+
+- Now just create your test files and you're good to go! Add a sample test to `App.test.tsx` to test it out.
