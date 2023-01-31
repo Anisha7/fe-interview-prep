@@ -53,8 +53,14 @@ module.exports = {
 ```
 module.exports = {
   testEnvironment: "jsdom",
+  moduleNameMapper: {
+    "\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
+      "<rootDir>/mocks/fileMock.js",
+    "\\.(css|less)$": "<rootDir>/mocks/fileMock.js",
+  },
 };
-
 ```
+
+The moduleNameMapper is necessary to allow image and css imports. And create a file in your root folder called: `mocks/fileMock.js` and have it `export default "";`
 
 - Now just create your test files and you're good to go! Add a sample test to `App.test.tsx` to test it out.
