@@ -26,3 +26,25 @@ In this repo, we will go over
 In the file directory: `npm start`
 
 ### [How to set up redux]('https://github.com/Anisha7/fe-interview-prep/blob/main/docs/TodoList.md')
+
+### How to initialize testing library
+
+`npm install --save-dev @testing-library/react`
+`npm install --save-dev jest @types/jest @babel/preset-typescript`
+
+Create file babel.config.js
+
+```
+module.exports = {
+  presets: [
+    "@babel/preset-env",
+    "@babel/preset-react",
+    "@babel/preset-typescript",
+  ],
+  plugins: [],
+};
+```
+
+Update the test script in package.json: `"test": "jest",`.
+
+Now just create your test files and you're good to go! Add a sample test to `App.test.tsx` to test it out.

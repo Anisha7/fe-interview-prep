@@ -10,7 +10,7 @@
 
 - Create folder `src/store`
 - Create folder `store/actions`. We will use subfolders to store different actions here
-- Create folder `store/reducers`. We will use subfolders to store different reducers here and then combine them in `store/reducers/index.js`.
+- Create folder `store/reducers`.
 
 For the purpose of this example, let's assume we are setting up a TODO list app. So create the following folders and files:
 
