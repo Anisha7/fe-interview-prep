@@ -5,7 +5,6 @@ import { loadState, saveState } from "./store/browserStorage";
 import { debounce } from "debounce";
 import TodoListApp from "./components/TodoListApp";
 import reducer from "./store/reducers";
-import logo from "./logo.svg";
 import "./App.css";
 
 const store = configureStore({
@@ -26,8 +25,6 @@ store.subscribe(
 function App() {
   return (
     <Provider store={store}>
-      <h1> APP </h1>
-      <img src={logo} className="App-logo" alt="logo" />
       <TodoListApp />
     </Provider>
   );

@@ -43,7 +43,7 @@ export const TaskListItem: React.FunctionComponent<TaskListItemProps> = ({
         checked={task.isCompleted}
         // user cannot set task as incomplete once marking as complete
         disabled={task.isCompleted}
-        onClick={() => dispatch(updateTask(task, true))}
+        onChange={() => dispatch(updateTask(task, true))}
         alt={task.title}
       />
       <label>{task.title}</label>
@@ -63,10 +63,11 @@ export const AddTaskItem: React.FunctionComponent<{ totalTasks: number }> = ({
         type="text"
         alt="enter new task title"
         onChange={(e) => setTaskTitle(e.target.value)}
+        placeholder="Enter new task"
+        data-testid="input-task"
       />
       <button
         onClick={() => {
-          console.log("ADDING", taskTitle);
           dispatch(
             addTask({
               title: taskTitle,

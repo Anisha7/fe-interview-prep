@@ -16,8 +16,8 @@ const TodoListApp: React.FunctionComponent = () => {
       <h1>TODO LIST</h1>
       <AddTaskItem totalTasks={totalTasks} />
       <StyledTaskListItemsContainer>
-        {task?.map((t) => {
-          return <TaskListItem task={t} />;
+        {task?.map((t, i) => {
+          return <TaskListItem task={t} key={`${t}-${i}`} />;
         })}
       </StyledTaskListItemsContainer>
     </StyledTaskListContainer>
