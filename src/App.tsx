@@ -6,6 +6,7 @@ import { debounce } from "debounce";
 import TodoListApp from "./components/TodoListApp";
 import reducer from "./store/reducers";
 import "./App.css";
+import UserInfoForm from "./components/UserInfoForm";
 
 const store = configureStore({
   reducer: reducer,
@@ -26,6 +27,7 @@ function App() {
   return (
     <Provider store={store}>
       <TodoListApp />
+      <UserInfoForm />
     </Provider>
   );
 }
