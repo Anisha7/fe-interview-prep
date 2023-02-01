@@ -45,7 +45,7 @@ describe("TaskListItem", () => {
 
 describe("TodoListApp", () => {
   test("", async () => {
-    const { getByPlaceholderText, getAllByText } = render(
+    const { getAllByText } = render(
       <Provider store={mockStore}>
         <TodoListApp />
       </Provider>
