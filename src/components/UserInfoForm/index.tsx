@@ -41,6 +41,7 @@ const UserInfoForm: React.FunctionComponent = () => {
           name="firstName"
           type="text"
           value={firstName}
+          placeholder="First name"
           onChange={(e) => setFirstName(e.target.value)}
           required
         />
@@ -48,6 +49,7 @@ const UserInfoForm: React.FunctionComponent = () => {
           name="lastName"
           type="text"
           value={lastName}
+          placeholder="Last name"
           onChange={(e) => setLastName(e.target.value)}
           required
         />
@@ -55,6 +57,7 @@ const UserInfoForm: React.FunctionComponent = () => {
           name="email"
           type="email"
           value={email}
+          placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
           required
         />
@@ -62,6 +65,7 @@ const UserInfoForm: React.FunctionComponent = () => {
           name="password"
           type="password"
           value={password}
+          placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
           required
         />
